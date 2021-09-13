@@ -1,3 +1,7 @@
+
+
+https://user-images.githubusercontent.com/85422297/133021271-4a8f8e01-400d-4e89-b9a3-2ce56d791ce8.mov
+
 # employee-tracker
 This project is the 12th challenge in my coding bootcamp class. This was our first project utilizing SQL. With employee tracker, you can manage your employee's information through an easy-to-use SQL database. It's easily accessible through console commands.
 Add departments, roles, employees, view departments, roles, employees, and update employee roles.
