@@ -1,5 +1,6 @@
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
+const cTable = require('console.table');
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -51,9 +52,6 @@ function startApp() {
                     break;
                 case "Add Employee":
                     addEmployee();
-                    break;
-                case "Remove Employees":
-                    removeEmployees();
                     break;
                 case "Update Employee Role":
                     updateEmployeeRole();
@@ -163,7 +161,6 @@ function addEmployee() {
     });
   }
 function promptInsert(roleChoices) {
-
   inquirer
     .prompt([
       {
@@ -204,3 +201,47 @@ function promptInsert(roleChoices) {
         });
     });
 }
+function updateEmployeeRole() { 
+  employeeArray();
+}
+function employeeArray() {
+  console.log("Updating employee info");
+
+  var query =
+    `SELECT e.id, e.first_name, e.last_name, r.title, d.name AS department, r.salary, CONCAT(m.first_name, ' ', m.last_name) AS manager
+  FROM employee e
+  JOIN role r
+	ON e.role_id = r.id
+  JOIN department d
+  ON d.id = r.department_id
+  JOIN employee m
+	ON m.id = e.manager_id`
+
+  connection.query(query, function (err, res) {
+    if (err) throw err;
+    const employeeChoices = res.map(({ id, first_name, last_name }) => ({
+      value: id, name: `${first_name} ${last_name}`      
+    }));
+    console.table(res);
+    console.log("Employee info updated!\n")
+    roleArray(employeeChoices);
+  });
+}
+function roleArray(employeeChoices) {
+    console.log("Update a role:");
+    var query =
+      `SELECT r.id, r.title, r.salary 
+    FROM role r`
+    let roleChoices;
+    connection.query(query, function (err, res) {
+      if (err) throw err;
+  
+      roleChoices = res.map(({ id, title, salary }) => ({
+        value: id, title: `${title}`, salary: `${salary}`      
+      }));
+      console.table(res);
+      console.log("roleArray to Update!\n")
+      promptEmployeeRole(employeeChoices, roleChoices);
+    });
+  }
+  
