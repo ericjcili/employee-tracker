@@ -7,38 +7,11 @@
             "previewLimit": 50,
             "server": "localhost",
             "port": 3306,
-            "driver": "MySQL",
-            "name": "MySQL",
-            "database": "employeeDB",
-            "username": "ericjcili",
-            "connectionTimeout": 60,
-            "password": ""
-        },
-        {
-            "mysqlOptions": {
-                "authProtocol": "default"
-            },
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 55300,
-            "driver": "MySQL",
-            "name": "MySQL2",
-            "database": "employeeDB",
-            "username": "test",
-            "password": ""
-        },
-        {
-            "mysqlOptions": {
-                "authProtocol": "default"
-            },
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 3306,
+            "askForPassword": true,
             "driver": "MySQL",
             "database": "employeesDB",
             "name": "testdb",
-            "username": "test",
-            "password": ""
+            "username": "test"
         }
     ]
 }

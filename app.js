@@ -81,14 +81,12 @@ function viewEmployees() {
   
     connection.query(query, function (err, res) {
       if (err) throw err;
-  
       console.table(res);
-      console.log("Employees viewed!\n");
-  
-      firstPrompt();
+      console.log("Displaying Employees\n");
+      startApp();
     });
 }
-function viewEmployeeByDepartment() {
+function viewEmployeesbyDepartment() {
     console.log("Viewing employees by department\n");
   
     var query =
@@ -243,9 +241,8 @@ function roleArray(employeeChoices) {
       console.log("roleArray to Update!\n")
       promptEmployeeRole(employeeChoices, roleChoices);
     });
-  }
+}
 function promptEmployeeRole(employeeChoices, roleChoices) {
-
   inquirer
     .prompt([
       {
@@ -279,7 +276,6 @@ function promptEmployeeRole(employeeChoices, roleChoices) {
     });
 }
 function addRole() {
-
   var query =
     `SELECT d.id, d.name, r.salary AS budget
     FROM employee e
@@ -301,9 +297,7 @@ function addRole() {
     promptAddRole(departmentChoices);
   });
 }
-
 function promptAddRole(departmentChoices) {
-
   inquirer
     .prompt([
       {
